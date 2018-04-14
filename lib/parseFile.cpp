@@ -1,41 +1,17 @@
-#include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 using namespace std;
 
-int fileToArray(string fileName, string **destinationArray) {
-  unsigned short linesNumber = 0; // unsigned int_fast16_t ?
-  ifstream dataFile(fileName);
-  if (!dataFile.is_open()) {
-    throw ios_base::failure("Failed to open file!");
-  }
-  string line;
-  while (getline(dataFile, line)) {
-    // add dataFile.good() check?
-    ++linesNumber;
-  }
-  // init string array to hold each line
-  *destinationArray = new string[linesNumber];
-  // clear the eof flag
-  dataFile.clear();
-  dataFile.seekg(0, ios::beg);
-  for (unsigned short i = 0; i < linesNumber && getline(dataFile, line); i++) {
-    // add dataFile.good() check?
-    (*destinationArray)[i] = line;
-  }
-  dataFile.close();
-  return linesNumber;
-}
+// converts the first line of the test file to array of ints
+uint16_t *firstLineToArray(string *firstLine) {
 
-int main() {
-  string testFile;
-  string* txtArray;
-  cin >> testFile;
-  int txtArraySize = fileToArray(testFile, &txtArray);
-  cout << "first 2 elements: " << txtArray[0] << " " << txtArray[1] << '\n';
-  cout << "size of array is: " << txtArraySize << '\n';
-  for (int j = 0; j < txtArraySize; j++) {
-    cout << txtArray[j] << '\n';
+  // store only the important dat in the array for efficiency
+  uint16_t *intArray = new uint16_t[3];
+  for (uint16_t i = 0; i < 3; i++) {
+    intArray[i] = atoi(firstLine[i + 1].c_str());
   }
+
+  return intArray;
 }
