@@ -26,16 +26,3 @@ uint16_t fileToArray(string fileName, string **destinationArray) {
   dataFile.close();
   return linesNumber;
 }
-
-// int main() {
-//   string testFile;
-//   string *txtArray;
-//   cin >> testFile;
-//   int txtArraySize = fileToArray(testFile, &txtArray);
-//   cout << "first 2 elements: " << txtArray[0] << " " << txtArray[1] << '\n';
-//   cout << "size of array is: " << txtArraySize << '\n';
-//   for (int j = 0; j < txtArraySize; j++) {
-//     cout << txtArray[j] << '\n';
-//   }
-//   delete[] txtArray;
-// }
