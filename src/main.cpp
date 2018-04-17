@@ -30,9 +30,11 @@ int main(int argc, char const *argv[]) {
 
   for (int_fast16_t i = 0; i < 2; i++) {
     cout << "coords: " << coords[i] << '\n';
+    cout << " type: " << typeid(coords[i]).name() << '\n';
   }
   for (int_fast16_t i = 0; i < 17; i++) {
     cout << "value line3: " << line3Nums[i] << '\n';
+    cout << "value line3 type: " << typeid(line3Nums[i]).name() << '\n';
   }
 
   //delete all arrays from heap
