@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-
+//TODO maybe class?
 using namespace std;
 
 uint16_t fileToArray(string fileName, string **destinationArray) {

@@ -26,7 +26,7 @@ Parse::Parse(const string *data, uint16_t linesNumber) {
   // store the data to the arrays
   convertFirstLine(data[0]);
   convertSecondLine(data[1]);
-  convertRestLines(data, numberOfLines + 2);
+  convertRestLines(data, numberOfLines);
 }
 
 Parse::~Parse() {
@@ -48,7 +48,7 @@ Parse::~Parse() {
 
 void Parse::convertFirstLine(string firstLine) {
   istringstream strStream(firstLine);
-  strStream.ignore(' ');
+  strStream.ignore(3);
   for (uint_fast16_t i = 0; i < 3; i++) {
     strStream >> firstLineArray[i];
   }
@@ -56,7 +56,7 @@ void Parse::convertFirstLine(string firstLine) {
 
 void Parse::convertSecondLine(string secondLine) {
   istringstream strStream(secondLine);
-  strStream.ignore(' ');
+  strStream.ignore(2);
   // x,y coords
   strStream >> secondLineArray[0] >> secondLineArray[1];
   // start,end of tour
@@ -66,16 +66,16 @@ void Parse::convertSecondLine(string secondLine) {
 
 void Parse::convertRestLines(const string *restOfLinesArray,
                              uint16_t arraySize) {
-  for (uint_fast16_t j = 2; j < arraySize; j++) {
+  for (uint_fast16_t j = 0; j < arraySize; j++) {
 
-    istringstream strStream(restOfLinesArray[j]);
+    istringstream strStream(restOfLinesArray[j + 2]);
     // vertex number
     strStream >> dataLinesArray[j][0];
     // x,y coords
     strStream >> coordsDestinationArray[j][0] >> coordsDestinationArray[j][1];
     // visiting duration - score of the location
     strStream >> dataLinesArray[j][1] >> dataLinesArray[j][2];
-    strStream.ignore(' ');
+    strStream.ignore(3);
     // stores opening and closing hour of the day to the array
     for (uint_fast16_t i = 3; i < 17; i++) {
       strStream >> dataLinesArray[j][i];
