@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-
+//TODO  makes this a class to denconstruct arrays ;)
 using namespace std;
 // All of the funcs need a string array, so they can convert the data
 
