@@ -30,7 +30,6 @@ Parse::Parse(const string *data, uint16_t linesNumber) {
 }
 
 Parse::~Parse() {
-  std::cout << "Deconstructor called!" << '\n';
 
   delete[] firstLineArray;
   delete[] secondLineArray;

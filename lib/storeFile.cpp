@@ -1,7 +1,7 @@
 #include <fstream>
-#include <iostream>
+#include <sstream>
 #include <string>
-//TODO maybe class?
+
 using namespace std;
 
 uint16_t fileToArray(string fileName, string **destinationArray) {
@@ -10,9 +10,14 @@ uint16_t fileToArray(string fileName, string **destinationArray) {
   if (!dataFile.is_open()) {
     throw ios_base::failure("Failed to open file!");
   }
+
+  // get total num of lines based on the vertices number on the first line
   string line;
-  while (getline(dataFile, line))
-    ++linesNumber;
+  getline(dataFile, line);
+  istringstream firstLine(line);
+  firstLine.ignore(7);
+  firstLine >> linesNumber;
+  linesNumber += 2;
 
   // init string array to hold each line
   *destinationArray = new string[linesNumber];

@@ -11,6 +11,7 @@ int main(int argc, char const *argv[]) {
   string *txtArray;
   int txtArraySize = fileToArray(testFile, &txtArray);
 
+  std::cout << "numlines " << txtArraySize << '\n';
   Parse obj(txtArray, txtArraySize);
 
 

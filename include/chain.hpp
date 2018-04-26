@@ -1,6 +1,6 @@
-#include <iostream>
 #ifndef CHAIN_NODE_HPP
 #define CHAIN_NODE_HPP
+#include <iostream>
 template <class T>class Chain;
 
 template <class T>

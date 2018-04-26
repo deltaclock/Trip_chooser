@@ -1,6 +1,6 @@
-#include <string>
 #ifndef PARSE_FILE_V2_HPP
 #define PARSE_FILE_V2_HPP
+#include <string>
 
 using namespace std;
 

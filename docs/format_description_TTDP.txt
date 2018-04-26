@@ -49,4 +49,4 @@ Where
 	- The first point (vertex number 0) is the starting AND ending point.
 	- The first regular point has vertex number 1. 
 	- The time budget per path (Tmax) equals the closing time minus the starting time of the starting point.
-	- The Euclidean distance is used and rounded down to the second decimal.
+	- The Euclidean distance is used and rounded down to the second decimal.\n
