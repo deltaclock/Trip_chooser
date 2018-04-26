@@ -36,3 +36,16 @@ private:
 
 };
 #endif
+
+#ifndef CHAIN_ITERATOR_HPP
+#define CHAIN_ITERATOR_HPP
+template <class T>
+class ChainIterator {
+private:
+  ChainNode<T> *location;
+
+public:
+  T* Init(const Chain<T>& c);
+  T* Next();
+};
+#endif
