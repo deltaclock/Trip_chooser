@@ -27,8 +27,12 @@ public:
   Chain<T> &Delete(int k, T &x);
   Chain<T> &Insert(int k, const T &x);
   void Output(std::ostream &out) const;
+  void Erase();
+  Chain<T> &Append(const T& x);
 
 private:
   ChainNode<T> *first; // pointer to first node
+  ChainNode<T> *last; // pointer to last node
+
 };
 #endif

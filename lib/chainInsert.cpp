@@ -25,6 +25,8 @@ template <class T> Chain<T> &Chain<T>::Insert(int k, const T &x) {
     y->link = first;
     first = y;
   }
+  if (!y->list)
+    last = y;
   return *this;
 }
 
@@ -53,6 +55,8 @@ template <class T> Chain<T> &Chain<T>::Delete(int k, T &x) {
                               "th element"); // no k'th
 
     p = q->link;
+    if (p == last)
+      last = q;
     q->link = p->link;
   }
   // remove k'th

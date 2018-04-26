@@ -1,5 +1,6 @@
 #include "parseFileV2.hpp"
 #include "storeFile.hpp"
+#include "chain.hpp"
 #include <iostream>
 #include <string>
 
@@ -13,7 +14,6 @@ int main(int argc, char const *argv[]) {
 
   std::cout << "numlines " << txtArraySize << '\n';
   Parse obj(txtArray, txtArraySize);
-
 
   delete[] txtArray;
 
