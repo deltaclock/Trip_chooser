@@ -33,7 +33,7 @@ template <class T> int Chain<T>::Search(const T &x) const {
     current = current->link;
     index++;
   }
-  
+
   if (current)
     return index;
   return 0;

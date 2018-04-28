@@ -1,5 +1,7 @@
 #include "chain.hpp"
 
+using namespace std;
+
 template <class T>
 int Chain<T>::Length() const { // Return the number of elements in the chain.
   ChainNode<T> *current = first;
@@ -43,11 +45,11 @@ template <class T> Chain<T> &Chain<T>::Append(const T &x) { // add x at the end.
   } else {
     first = last = y;
   }
+  return *this;
 }
 
-template <class T>
-void Chain<T>::Output(
-    std::ostream &out) const { // add all chain elements to out stream
+template <class T> void Chain<T>::Output(std::ostream &out) const {
+
   ChainNode<T> *current;
   for (current = first; current; current = current->link) {
     out << current->data << "  ";
@@ -66,7 +68,8 @@ template <class T> T *ChainIterator<T>::Init(const Chain<T> &c) {
 }
 
 template <class T> T *ChainIterator<T>::Next() {
-  if(!location) return 0;
-  location = location -> link;
+  if (!location)
+    return 0;
+  location = location->link;
   return (location) ? (&location->data) : 0;
 }

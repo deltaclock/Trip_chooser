@@ -1,10 +1,9 @@
 #ifndef CHAIN_NODE_HPP
 #define CHAIN_NODE_HPP
 #include <iostream>
-template <class T>class Chain;
+template <class T> class Chain;
 
-template <class T>
-class ChainNode {
+template <class T> class ChainNode {
   friend Chain<T>;
 
 private:
@@ -15,8 +14,7 @@ private:
 
 #ifndef CHAIN_HPP
 #define CHAIN_HPP
-template <class T>
-class Chain {
+template <class T> class Chain {
 public:
   Chain() { first = 0; }
   ~Chain();
@@ -28,24 +26,24 @@ public:
   Chain<T> &Insert(int k, const T &x);
   void Output(std::ostream &out) const;
   void Erase();
-  Chain<T> &Append(const T& x);
+  Chain<T> &Append(const T &x);
 
 private:
   ChainNode<T> *first; // pointer to first node
-  ChainNode<T> *last; // pointer to last node
-
+  ChainNode<T> *last;  // pointer to last node
 };
+template <class T>
+std::ostream &operator<<(std::ostream &out, const Chain<T> &x);
 #endif
 
 #ifndef CHAIN_ITERATOR_HPP
 #define CHAIN_ITERATOR_HPP
-template <class T>
-class ChainIterator {
+template <class T> class ChainIterator {
 private:
   ChainNode<T> *location;
 
 public:
-  T* Init(const Chain<T>& c);
-  T* Next();
+  T *Init(const Chain<T> &c);
+  T *Next();
 };
 #endif

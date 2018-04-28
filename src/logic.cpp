@@ -23,7 +23,6 @@ bool isValidVisit(uint16_t arrival, uint16_t closingTime, uint16_t openingTime,
           arrival + averageTime < closingTime);
 }
 
-
 //
 // int main(int argc, char const *argv[]) {
 //
