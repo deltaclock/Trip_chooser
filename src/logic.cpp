@@ -1,19 +1,19 @@
 #include <cmath>
-#include <iostream>
+#include "logic.hpp"
 
 using namespace std;
 
-float pointsDistance(float x1 = 0, float y1 = 0, float x2 = 0, float y2 = 0) {
+float pointsDistance(float x1, float y1, float x2, float y2) {
 
   float t0 = pow((x1 - x2), 2);             // (x1-x2)^2
   float t1 = pow((y1 - y2), 2);             // (y1-y2)^2
   return floorf(sqrt(t0 + t1) * 100) / 100; // square root and floor to 2nd dec
 }
 
-float profit(uint16_t score, uint16_t visitDuration, float distancePrevCurr,
-             float distanceNextCurr, float distancePrevNext) {
+float profit(uint16_t score, uint16_t visitDuration, float distancePrevNew,
+             float distanceNextNew, float distancePrevNext) {
 
-  return pow(score, 2) / (visitDuration + distancePrevCurr + distanceNextCurr -
+  return pow(score, 2) / (visitDuration + distancePrevNew + distanceNextNew -
                           distancePrevNext);
 }
 
@@ -23,10 +23,6 @@ bool isValidVisit(uint16_t arrival, uint16_t closingTime, uint16_t openingTime,
           arrival + averageTime < closingTime);
 }
 
-//
-// int main(int argc, char const *argv[]) {
-//
-//   cout << "distance:  " << pointsDistance(2.3, 5.6, 7.8, 4.6) << '\n';
-//   cout << "profit: " << profit(10, 40, 5.89, 6.78, 7.43) << '\n';
-//   return 0;
-// }
+float additionalTime(float profit, uint16_t score) {
+  return pow(score, 2) / profit;
+}

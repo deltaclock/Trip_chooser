@@ -3,7 +3,7 @@
 using namespace std;
 
 template <class T>
-int Chain<T>::Length() const { // Return the number of elements in the chain.
+uint16_t Chain<T>::Length() const { // Return the number of elements in the chain.
   ChainNode<T> *current = first;
   int len = 0;
   while (current) {

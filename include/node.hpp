@@ -1,3 +1,6 @@
+#ifndef NODE_HPP
+#define NODE_HPP
+#include "parseFileV2.hpp"
 #include <iostream>
 
 typedef struct nodeData {
@@ -12,7 +15,11 @@ typedef struct nodeData {
 
   friend std::ostream &operator<<(std::ostream &os, nodeData const &nd) {
     return os << nd.vertexNum << '\t' << nd.xcoord << '\t' << nd.ycoord << '\t'
-              << nd.visitDur << '\t' << nd.score << '\t' << nd.openTime << '\t'
-              << nd.closeTime << '\t';
+    << nd.visitDur << '\t' << nd.score << '\t' << nd.openTime << '\t'
+    << nd.closeTime << '\t';
   }
 } nodeData;
+
+nodeData makeHotel(const Parse& o);
+nodeData makeSight(const Parse &o, uint16_t vertex, uint16_t day, uint16_t t);
+#endif

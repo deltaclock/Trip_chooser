@@ -23,7 +23,7 @@ public:
   Chain() { first = 0; }
   ~Chain();
   bool IsEmpty() const { return first == 0; }
-  int Length() const;
+  uint16_t Length() const;
   bool Find(int k, T &x) const;
   int Search(const T &x) const;
   Chain<T> &Delete(int k, T &x);

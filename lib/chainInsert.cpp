@@ -25,7 +25,7 @@ template <class T> Chain<T> &Chain<T>::Insert(int k, const T &x) {
     y->link = first;
     first = y;
   }
-  if (!y->list)
+  if (!y->link)
     last = y;
   return *this;
 }
