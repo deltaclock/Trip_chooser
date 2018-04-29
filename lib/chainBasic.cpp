@@ -52,7 +52,7 @@ template <class T> void Chain<T>::Output(std::ostream &out) const {
 
   ChainNode<T> *current;
   for (current = first; current; current = current->link) {
-    out << current->data << "  ";
+    out << current->data << "\n";
   }
 }
 

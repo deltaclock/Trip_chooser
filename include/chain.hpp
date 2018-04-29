@@ -2,9 +2,11 @@
 #define CHAIN_NODE_HPP
 #include <iostream>
 template <class T> class Chain;
+template <class T> class ChainIterator;
 
 template <class T> class ChainNode {
   friend Chain<T>;
+  friend ChainIterator<T>;
 
 private:
   T data;
@@ -15,6 +17,8 @@ private:
 #ifndef CHAIN_HPP
 #define CHAIN_HPP
 template <class T> class Chain {
+  friend ChainIterator<T>;
+
 public:
   Chain() { first = 0; }
   ~Chain();

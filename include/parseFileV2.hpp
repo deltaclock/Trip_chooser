@@ -15,7 +15,7 @@ private:
   void convertRestLines(const string *restOfLinesArray, uint16_t arraySize);
 
 public:
-  uint16_t numberOfLines = 0;
+  uint16_t numberOfVertices = 0;
   uint16_t *firstLineArray = nullptr;
   uint16_t *secondLineArray = nullptr;
   uint16_t **dataLinesArray = nullptr;

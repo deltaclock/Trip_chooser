@@ -6,27 +6,27 @@
 using namespace std;
 
 Parse::Parse(const string *data, uint16_t linesNumber) {
-  numberOfLines = linesNumber - 2;
+  numberOfVertices = linesNumber - 2;
 
   firstLineArray = new uint16_t[LINE_1_ARRAY_SIZE];
   secondLineArray = new uint16_t[LINE_2_ARRAY_SIZE];
 
-  coordsDestinationArray = new float *[numberOfLines];
+  coordsDestinationArray = new float *[numberOfVertices];
 
-  for (uint_fast16_t i = 0; i < numberOfLines; i++) {
+  for (uint_fast16_t i = 0; i < numberOfVertices; i++) {
     coordsDestinationArray[i] = new float[FLOAT_ARRAY_SIZE];
   }
 
-  dataLinesArray = new uint16_t *[numberOfLines];
+  dataLinesArray = new uint16_t *[numberOfVertices];
 
-  for (uint_fast16_t i = 0; i < numberOfLines; i++) {
+  for (uint_fast16_t i = 0; i < numberOfVertices; i++) {
     dataLinesArray[i] = new uint16_t[DATA_LINE_ARRAY_SIZE];
   }
 
   // store the data to the arrays
   convertFirstLine(data[0]);
   convertSecondLine(data[1]);
-  convertRestLines(data, numberOfLines);
+  convertRestLines(data, numberOfVertices);
 }
 
 Parse::~Parse() {
@@ -34,12 +34,12 @@ Parse::~Parse() {
   delete[] firstLineArray;
   delete[] secondLineArray;
 
-  for (uint_fast16_t i = 0; i < numberOfLines; i++) {
+  for (uint_fast16_t i = 0; i < numberOfVertices; i++) {
     delete[] coordsDestinationArray[i];
   }
   delete[] coordsDestinationArray;
 
-  for (uint_fast16_t i = 0; i < numberOfLines; i++) {
+  for (uint_fast16_t i = 0; i < numberOfVertices; i++) {
     delete[] dataLinesArray[i];
   }
   delete[] dataLinesArray;
