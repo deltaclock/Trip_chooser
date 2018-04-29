@@ -11,14 +11,17 @@ nodeData makeHotel(const Parse &o) {
 }
 
 nodeData makeSight(const Parse &o, uint16_t vertex, uint16_t day, uint16_t t) {
+  if (day + t > 6) {
+    day = t - (7 - day);
+  }
   nodeData tmpSight;
   tmpSight.vertexNum = o.dataLinesArray[vertex][0];
   tmpSight.xcoord = o.coordsDestinationArray[vertex][0];
   tmpSight.ycoord = o.coordsDestinationArray[vertex][1];
   tmpSight.visitDur = o.dataLinesArray[vertex][1];
   tmpSight.score = o.dataLinesArray[vertex][2];
-  tmpSight.openTime = o.dataLinesArray[vertex][3 + day + t];
-  tmpSight.closeTime = o.dataLinesArray[vertex][4 + day + t];
+  tmpSight.openTime = o.dataLinesArray[vertex][3 + day * 2 + t];
+  tmpSight.closeTime = o.dataLinesArray[vertex][4 + day * 2 + t];
 
   return tmpSight;
 }
