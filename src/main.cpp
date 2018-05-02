@@ -106,14 +106,9 @@ int main(int argc, char const *argv[]) {
       availableTime[tourNum] -= addTime;
     }
     // loop the trips chain lists
-    std::cout << "STARTED DELETE" << '\n';
     for (uint_fast16_t d = 0; d < tours; d++) {
-      std::cout << "START" << '\n';
-      cout << "list is len: " << tripsList[d].Length() << '\n';
-      cout << "Reached the end here are the trips:\n" << tripsList[d];
-      std::cout << "next trips list---------------" << '\n';
+
       uint16_t listLen = tripsList[d].Length();
-      std::cout << "in loop list len: " << listLen << '\n';
       if (listLen == 1)
         continue;
       auto randNodeNum = randomInt(1, listLen);
