@@ -56,20 +56,14 @@ int main(int argc, char const *argv[]) {
         nodeData newNode = makeSight(obj, i, day, j);
         auto chainLen = tripsList[j].Length();
 
-        cout << "list is len: " << chainLen << '\n';
-        cout << "list has: \n" << tripsList[j] << "-----------------------\n";
-
         ChainIterator<nodeData> c;
         nodeData *x = c.Init(tripsList[j]);
 
         auto first = x;
         auto prev = x;
         auto next = (chainLen != 1) ? c.Next() : x;
-        std::cout << "next has: " << *next << '\n';
         for (uint_fast16_t k = 0; k < chainLen; k++) {
-          std::cout << "got in the third loop" << '\n';
-          std::cout << "next has: " << *next << '\n';
-          std::cout << "prev has: " << *prev << '\n';
+
           auto prevNext = pointsDistance(prev->xcoord, prev->ycoord,
                                          next->xcoord, next->ycoord);
           auto prevNew = pointsDistance(prev->xcoord, prev->ycoord,
@@ -82,31 +76,22 @@ int main(int argc, char const *argv[]) {
                                    newNext, prevNext);
           auto addTime = additionalTime(curProfit, newNode.score);
           auto arriveTime = timeSpent[j] + prevNew;
-          std::cout << "cur profit: " << curProfit << '\n';
-          std::cout << "arrive: " << arriveTime << '\n';
+
           bool valid = isValidVisit(arriveTime, newNode.closeTime,
                                     newNode.openTime, newNode.visitDur);
-          std::cout << "valid: " << valid << '\n';
-          std::cout << "addTime: " << addTime << '\n';
-          std::cout << "availableTime: " << availableTime[j] << '\n';
-          std::cout << "max profit:" << maxProfit << '\n';
+
           if (curProfit > maxProfit && valid && addTime < availableTime[j]) {
-            std::cout << "got in the loop if" << '\n';
             maxProfit = curProfit;
             insertAfter = k + 1;
             tourNum = j;
           }
-          std::cout << "max profit:" << maxProfit << '\n';
-          std::cout << "insertAfter:" << insertAfter << '\n';
           prev = next;
           next = (k + 2 != chainLen) ? c.Next() : first;
         }
       }
-      std::cout << "before continue" << '\n';
-      // get to the next vertice,could do not insert he last one nowhere
+      // get to the next vertice,could do not insert the last one nowhere
       if (tourNum == -1)
         continue;
-      std::cout << "after continue" << '\n';
 
       // make the sight to be inserted.
       auto sight = makeSight(obj, i, day, tourNum);
@@ -132,74 +117,45 @@ int main(int argc, char const *argv[]) {
       if (listLen == 1)
         continue;
       auto randNodeNum = randomInt(1, listLen);
-      auto test = randomFloat();
-      std::cout << "rand float: " << test << '\n';
-      auto nodesToDel = deleteNodesNum(test, listLen-1);
-      std::cout << "random stuff: " << randNodeNum << " ::: " << nodesToDel << '\n';
-
+      auto nodesToDel = deleteNodesNum(randomFloat(), listLen-1);
       ChainIterator<nodeData> c;
       c.Init(tripsList[d]);
 
       nodeData *nextNode = nullptr;
-      for (uint_fast16_t i = 1; i <= listLen; i++) {
+      for (uint_fast16_t i = 1; i <= listLen && i -1 != randNodeNum; i++) {
 
         nextNode = c.Next();
-        if (nextNode)
-        std::cout << "in the listlen loop next node has \n" << *nextNode <<endl;
         if (i == randNodeNum) {
-          if (nextNode)
-          std::cout << "got in the if next node has \n" << *nextNode <<'\n';
           auto targetNode = nextNode;
-          int deleted = 0;
-          for (uint_fast16_t l = 0; l < nodesToDel && targetNode; l++) {
+          uint_fast16_t deleted;
+          for (deleted = 0; deleted < nodesToDel && targetNode; deleted++) {
             // remove from list and free their memory
             uint16_t position = tripsList[d].Search(*targetNode);
-            std::cout << "pos in the loop: " << position << '\n';
-            std::cout << "before del\n" << tripsList[d] <<'\n';
             tripsList[d].Delete(position, *targetNode);
-            std::cout << "after del\n" << tripsList[d] <<'\n';
-            //delete targetNode;
-            deleted++;
             targetNode = c.Next();
-            if (targetNode)
-            std::cout << "in the loop next node has \n" << *targetNode <<'\n';
           }
 
-          std::cout << "deleted " << deleted << '\n';
           if (deleted != nodesToDel) {
-            std::cout << "got in the if" << '\n';
             c.Init(tripsList[d]);
             auto remainingNode = c.Next();
-            do {
-              std::cout << "remain node has\n" << *remainingNode <<'\n';
+            for (; deleted < nodesToDel; deleted++){
+
               uint16_t position = tripsList[d].Search(*remainingNode);
-              std::cout << "t has: " << position << '\n';
-              std::cout << "before del\n" << tripsList[d] <<'\n';
               tripsList[d].Delete(position, *remainingNode);
-              std::cout << "after del\n" << tripsList[d] <<'\n';
-              //delete remainingNode;
-              deleted++;
-
-            } while ((remainingNode = c.Next()) && deleted < nodesToDel);
-
-            break;
-          } else {
-            break;
+              remainingNode = c.Next();
+            }
           }
         }
       }
-      std::cout << "END" << '\n';
-      cout << "list is len: " << tripsList[d].Length() << '\n';
-      cout << "Reached the end here are the trips:\n" << tripsList[d];
-      std::cout << "next trips list---------------" << '\n';
     }
   }
+  std::cout << "--------------------------LAST PRINT-----------------------------" << '\n';
   for (uint_fast16_t j = 0; j < tours; j++) {
     cout << "list is len: " << tripsList[j].Length() << '\n';
     cout << "Reached the end here are the trips:\n" << tripsList[j];
     std::cout << "next trips list---------------" << '\n';
   }
-  //delete[] tripsList;
+  delete[] tripsList;
   delete[] timeSpent;
   delete[] availableTime;
   return 0;
