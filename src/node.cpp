@@ -11,9 +11,8 @@ nodeData makeHotel(const Parse &o) {
 }
 
 nodeData makeSight(const Parse &o, uint16_t vertex, uint16_t day, uint16_t t) {
-  if (day + t > 6) {
-    day = t - (7 - day);
-  }
+  day = (day + t > 6) ? t - (7 - day) : day;
+
   nodeData tmpSight;
   tmpSight.vertexNum = o.dataLinesArray[vertex][0];
   tmpSight.xcoord = o.coordsDestinationArray[vertex][0];

@@ -10,7 +10,6 @@ uint16_t fileToArray(string fileName, string **destinationArray) {
   if (!dataFile.is_open()) {
     throw ios_base::failure("Failed to open file!");
   }
-
   // get total num of lines based on the vertices number on the first line
   string line;
   getline(dataFile, line);
